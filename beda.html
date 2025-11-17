@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+
+        header {
+            width: 100%;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            /* transparan */
+            backdrop-filter: blur(5px);
+            /* biar makin aesthetic */
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            /* tulisan ke tengah */
+            align-items: center;
+            gap: 50px;
+        }
+
+        nav a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: green;
+        }
+
+        .logo img {
+            width: 80px;
+        }
+
+
+
+        #home {
+            height: 100vh;
+            background-image: url("padi.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        #home::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+
+        /* Section Home Animasi fade-in */
+        #home .carisa {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1.5s ease-out;
+        }
+
+        #home .carisa.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        #home h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        #home h3 {
+            font-weight: normal;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+
+        #information {
+            height: 100vh;
+            background-image: url("bg2.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgb(205, 240, 153);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        #information .candra {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            max-width: 1000px;
+        }
+
+        #information h3 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: rgb(24, 9, 9);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+            animation: fadeUp 2s ease-out;
+        }
+
+        #information img {
+            width: 350px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            animation: fadeUp 2s ease-out;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === Tambahkan fade-in DI SINI 😁 === */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1.2s ease-out;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        #manfaat {
+            padding: 80px 50px;
+            background: #f5f5f5;
+            text-align: center;
+        }
+
+        .manfaat-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* FOOTER MODERN */
+        .footer {
+            background: linear-gradient(135deg, #003e1f, #006d3b);
+            color: white;
+            padding: 50px 0 20px 0;
+            margin-top: 60px;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-content {
+            width: 80%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-left,
+        .footer-center,
+        .footer-right {
+            width: 30%;
+            min-width: 250px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .footer-center h3,
+        .footer-right h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .footer-center ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-center ul li {
+            margin: 8px 0;
+        }
+
+        .footer-center ul li a {
+            text-decoration: none;
+            color: #c7ffcf;
+            transition: 0.3s;
+        }
+
+        .footer-center ul li a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            font-size: 28px;
+            color: #c7ffcf;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ffffff;
+            transform: scale(1.2);
+        }
+
+        .footer-bottom {
+            margin-top: 25px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 15px;
+            font-size: 14px;
+        }
+
+        .manfaat-container {
+            display: flex;
+            flex-wrap: wrap;
+            /* biar melipat kalau layar kecil */
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* ------- HAMBURGER STYLE ------- */
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: black;
+        }
+
+        /* Container nav link */
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        /* ------- RESPONSIVE ------- */
+        @media (max-width: 768px) {
+
+            nav {
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 60%;
+                height: 100vh;
+                background: white;
+                backdrop-filter: blur(6px);
+                flex-direction: column;
+                padding-top: 40px;
+                gap: 30px;
+                transition: 0.4s ease;
+                box-shadow: -3px 0 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links a {
+                font-size: 18px;
+            }
+
+            /* saat aktif */
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+
+<header>
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Logo Website">
+        </div>
+
+        <div class="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#information">Information</a>
+            <a href="#manfaat">Manfaat</a>
+            <a href="#footer">Footer</a>
+        </div>
+    </nav>
+</header>
+
+<section id="home">
+    <div class="carisa">
+        <h1>Welcome To Alam</h1>
+        <h3>
+            Bumi bukan sekadar tempat kita berpijak, tapi rumah yang memberi kehidupan.
+            Mari kita jaga keseimbangannya, menanam harapan untuk generasi masa depan.
+            Bersama kita wujudkan lingkungan yang lestari, seimbang, dan penuh kehidupan.
+            Menjaga alam bukan sekadar tanggung jawab, tetapi kebutuhan. Alam menyediakan
+            udara untuk kita hirup, air untuk kita minum, dan tanah untuk kita pijak. Jika kita tidak
+            merawatnya, maka perlahan kehidupan yang kita kenal akan hilang bersama rusaknya keseimbangan.
+        </h3>
+    </div>
+</section>
+
+<section id="information">
+    <div class="candra">
+        <img src="bumi.jpg" alt="Gambar Bumi">
+        <h3>
+            Menjaga alam sangat penting karena alam menyediakan udara, air, dan makanan yang kita butuhkan untuk
+            hidup.
+            Dengan menjaga lingkungan, kita dapat mencegah polusi, bencana, dan punahnya makhluk hidup.
+            Merawat bumi berarti memberi kehidupan yang lebih baik untuk masa depan.
+        </h3>
+
+    </div>
+</section>
+
+<section id="manfaat">
+    <h2>Keuntungan Menjaga Alam</h2>
+    <div class="manfaat-container">
+
+        <div class="card fade-in">
+            <img src="ngalir.jpeg">
+            <h3>Ketersediaan Air Bersih</h3>
+            <p>Hutang dan tanah yang sehat menyerap serta menyimpan air, sehingga sumber air tidak
+                cepat kering dan tetap layak di gunakan.</p>
+        </div>
+
+        <div class="card fade-in">
+            <img src="mthr.jpg">
+            <h3>Lingkungan Bersih</h3>
+            <p>Menjaga alam mengurangi pencemaran udara sehingga makhluk hidup dapat tumbuh dengan baik.</p>
+        </div>
+
+        <div class="card fade-in">
+            <img src="sampah.jpg">
+            <h3>Mencegah Bencana Alam</h3>
+            <p>Alam yang terjaga dapat mengurangi risiko banjir, tanah longsor, kekeringan, dan erosi karena
+                ekosistem bekerja secara alami.</p>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer" id="footer">
+    <div class="footer-content">
+        <div class="footer-left">
+            <h2 class="footer-logo">MyWebsite</h2>
+            <p>Menjaga alam berarti menjaga masa depan kita. Mari lakukan dari hal kecil.</p>
+        </div>
+
+        <div class="footer-center">
+            <h3>Navigasi</h3>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#information">Information</a></li>
+                <li><a href="#manfaat">Manfaat</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-right">
+            <h3>Ikuti Kami</h3>
+            <div class="social-icons">
+                <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 My Website | Created by Carissa Candrawati</p>
+    </div>
+</footer>
+
+<script>
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
+</script>
+
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    });
+</script>
+
+
+<script>
+    // Animasi fade-in tulisan di Home saat pertama buka web
+    window.addEventListener("load", function () {
+        const homeText = document.querySelector("#home .carisa");
+        homeText.classList.add("show");
+    });
+
+    // Animasi fade-in card saat scroll
+    const items = document.querySelectorAll('.fade-in');
+
+    function scrollAnimation() {
+        let triggerBottom = window.innerHeight * 0.85;
+
+        items.forEach(item => {
+            let boxTop = item.getBoundingClientRect().top;
+
+            if (boxTop < triggerBottom) {
+                item.classList.add('show');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', scrollAnimation);
+    scrollAnimation();
+</script>
+
+
+<script>
+    // Animasi fade-in saat scroll
+    const item = document.querySelectorAll('.fade-in');
+
+    const scrollAnimation = () => {
+        let triggerBottom = window.innerHeight * 0.85;
+
+        items.forEach(item => {
+            let boxTop = item.getBoundingClientRect().top;
+
+            if (boxTop < triggerBottom) {
+                item.classList.add('show');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', scrollAnimation);
+    scrollAnimation();
+</script>
+
+
+</body>
+
+</html>
