@@ -151,55 +151,7 @@
             border-radius: 10px;
         }
 
-        #fakta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            position: relative;
-            padding: 20px;
-        }
-
-        .slider {
-            display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            gap: 20px;
-            padding: 10px;
-            width: 80%;
-        }
-
-        .slider::-webkit-scrollbar {
-            display: none;
-        }
-
-        .ini {
-            min-width: 250px;
-            text-align: center;
-        }
-
-        .ini img {
-            width: 250px;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .prev,
-        .next {
-            background: green;
-            color: white;
-            border: none;
-            padding: 15px 18px;
-            font-size: 20px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        .prev:hover,
-        .next:hover {
-            background: darkgreen;
-        }
+       
 
 
         /* FOOTER */
@@ -521,33 +473,7 @@
         </div>
     </section>
 
-    <section id="fakta">
-        <button class="prev">❮</button>
 
-        <div class="slider">
-            <div class="ini">
-                <img src="laut.jpg">
-                <h3>Laut menyumbang lebih dari 50% oksigen di bumi</h3>
-            </div>
-
-            <div class="ini">
-                <img src="dalam.jpg">
-                <h3>Laut terdalam di dunia adalah Palung Mariana</h3>
-            </div>
-
-            <div class="ini">
-                <img src="panjang.jpg">
-                <h3>Hutan hujan Amazon disebut “paru-paru dunia”</h3>
-            </div>
-
-            <div class="ini">
-                <img src="akar.jpg">
-                <h3>Akar tanaman bisa mencegah bencana</h3>
-            </div>
-        </div>
-
-        <button class="next">❯</button>
-    </section>
 
 
     <footer id="footer">
@@ -591,20 +517,7 @@
     </footer>
 
 
-    <script>
-        const slider = document.querySelector(".slider");
-        const next = document.querySelector(".next");
-        const prev = document.querySelector(".prev");
-
-        next.addEventListener("click", () => {
-            slider.scrollLeft += 300; // geser ke kanan
-        });
-
-        prev.addEventListener("click", () => {
-            slider.scrollLeft -= 300; // geser ke kiri
-        });
-    </script>
-
+  
     <script>
         const hamburger = document.querySelector(".hamburger");
         const navLinks = document.querySelector(".nav-links");
