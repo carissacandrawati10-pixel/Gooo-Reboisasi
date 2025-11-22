@@ -151,7 +151,87 @@
             border-radius: 10px;
         }
 
-       
+        /* container section */
+        #fakta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 24px;
+            max-width: 1100px;
+            margin: 40px auto;
+            box-sizing: border-box;
+        }
+
+        /* prev/next buttons */
+        #fakta .prev,
+        #fakta .next {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        #fakta .prev:active,
+        #fakta .next:active {
+            transform: translateY(1px);
+        }
+
+        /* wrapper hides overflow so only few boxes visible */
+        .slider-wrap {
+            overflow: hidden;
+            flex: 1;
+            /* mengambil ruang yang tersisa */
+        }
+
+        /* slider track */
+        .slider {
+            display: flex;
+            gap: 16px;
+            transition: transform 400ms cubic-bezier(.22, .9, .36, 1);
+            will-change: transform;
+            touch-action: pan-y;
+            align-items: stretch;
+            padding: 8px 0;
+        }
+
+        /* card (kotak) style */
+        .ini {
+            min-width: 240px;
+            /* lebar kotak — diubah responsive di bawah */
+            max-width: 260px;
+            background: rgb(236, 250, 229);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(12, 38, 63, 0.06);
+            padding: 12px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            text-align: center;
+            border: 1px solid rgba(10, 10, 10, 0.03);
+            flex-shrink: 0;
+        }
+
+        .ini img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .ini h3 {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.3;
+            color: #053037;
+            padding: 4px 8px;
+        }
+
 
 
         /* FOOTER */
@@ -238,7 +318,7 @@
                 right: -100%;
                 width: 50%;
                 /* ubah disini */
-                height: 21vh;
+                height: 25vh;
                 background: rgb(139, 174, 102);
                 flex-direction: column;
                 gap: 30px;
@@ -387,6 +467,43 @@
         .card:nth-child(3) {
             animation-delay: 1s;
         }
+
+        @media (max-width: 900px) {
+            .ini {
+                min-width: 210px;
+                max-width: 220px;
+            }
+
+            #fakta {
+                padding: 18px;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            /* di HP, tampil 1.2 kotak supaya terasa swipe */
+            .ini {
+                min-width: 86%;
+                max-width: 86%;
+                height: auto;
+            }
+
+            #fakta {
+                padding: 12px;
+                gap: 6px;
+            }
+
+            #fakta .prev,
+            #fakta .next {
+                padding: 8px 10px;
+                font-size: 18px;
+            }
+        }
+
+        .ini.clone {
+            visibility: visible;
+        }
     </style>
 </head>
 
@@ -404,7 +521,7 @@
                 <a href="#home">Home</a>
                 <a href="#informasi">Informasi</a>
                 <a href="#manfaat">Manfaat</a>
-                <a href="fakta">Fakta</a>
+                <a href="#fakta">Fakta</a>
                 <a href="#footer">Footer</a>
             </div>
         </nav>
@@ -473,7 +590,46 @@
         </div>
     </section>
 
+    <section id="fakta">
+        <button class="prev" aria-label="Sebelumnya">❮</button>
 
+        <!-- wrapper agar overflow tersembunyi -->
+        <div class="slider-wrap">
+            <div class="slider">
+                <div class="ini">
+                    <img src="laut.jpg" alt="laut">
+                    <h3>Laut menyumbang lebih dari 50% oksigen di bumi</h3>
+                </div>
+
+                <div class="ini">
+                    <img src="dalam.jpg" alt="palung mariana">
+                    <h3>Laut terdalam di dunia adalah Palung Mariana</h3>
+                </div>
+
+                <div class="ini">
+                    <img src="panjang.jpg" alt="amazon">
+                    <h3>Hutan hujan Amazon disebut “paru-paru dunia”</h3>
+                </div>
+
+                <div class="ini">
+                    <img src="akar.jpg" alt="akar tanaman">
+                    <h3>Akar tanaman bisa mencegah bencana</h3>
+                </div>
+
+                <!-- duplikasi slide untuk efek loop yang halus (opsional) -->
+                <div class="ini clone">
+                    <img src="laut.jpg" alt="laut">
+                    <h3>Laut menyumbang lebih dari 50% oksigen di bumi</h3>
+                </div>
+                <div class="ini clone">
+                    <img src="dalam.jpg" alt="palung mariana">
+                    <h3>Laut terdalam di dunia adalah Palung Mariana</h3>
+                </div>
+            </div>
+        </div>
+
+        <button class="next" aria-label="Berikutnya">❯</button>
+    </section>
 
 
     <footer id="footer">
@@ -517,7 +673,7 @@
     </footer>
 
 
-  
+
     <script>
         const hamburger = document.querySelector(".hamburger");
         const navLinks = document.querySelector(".nav-links");
@@ -527,6 +683,129 @@
         });
     </script>
 
+    <script>
+        (function () {
+            const wrap = document.querySelector('.slider-wrap');
+            const track = document.querySelector('.slider');
+            const slides = Array.from(track.children);
+            const prevBtn = document.querySelector('#fakta .prev');
+            const nextBtn = document.querySelector('#fakta .next');
+
+            let index = 0;
+            let isDragging = false;
+            let startX = 0;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let animationID = 0;
+            let slideWidth = slides[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || 16);
+            let autoplayInterval = null;
+
+            function updateWidth() {
+                slideWidth = slides[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || 16);
+                setPositionByIndex();
+            }
+
+            window.addEventListener('resize', updateWidth);
+
+            function setPositionByIndex() {
+                currentTranslate = -index * slideWidth;
+                prevTranslate = currentTranslate;
+                track.style.transform = `translateX(${currentTranslate}px)`;
+            }
+
+            function goToNext() {
+                if (index < slides.length - visibleCount()) {
+                    index++;
+                } else {
+                    index = 0;
+                }
+                setPositionByIndex();
+                resetAutoplay();
+            }
+            function goToPrev() {
+                if (index > 0) index--;
+                else index = slides.length - visibleCount();
+                setPositionByIndex();
+                resetAutoplay();
+            }
+
+            nextBtn.addEventListener('click', goToNext);
+            prevBtn.addEventListener('click', goToPrev);
+
+            function visibleCount() {
+                const wrapWidth = wrap.getBoundingClientRect().width;
+                const count = Math.floor(wrapWidth / slideWidth) || 1;
+                return count;
+            }
+
+            track.addEventListener('pointerdown', pointerDown);
+            track.addEventListener('pointerup', pointerUp);
+            track.addEventListener('pointerleave', pointerUp);
+            track.addEventListener('pointermove', pointerMove);
+
+            function pointerDown(e) {
+                isDragging = true;
+                startX = e.clientX;
+                track.style.transition = 'none';
+                cancelAnimationFrame(animationID);
+            }
+            function pointerMove(e) {
+                if (!isDragging) return;
+                const diff = e.clientX - startX;
+                track.style.transform = `translateX(${prevTranslate + diff}px)`;
+            }
+            function pointerUp(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                const diff = e.clientX - startX;
+                if (Math.abs(diff) > slideWidth * 0.25) {
+                    if (diff < 0) index = Math.min(index + 1, slides.length - visibleCount());
+                    else index = Math.max(index - 1, 0);
+                }
+                track.style.transition = '';
+                setPositionByIndex();
+                resetAutoplay();
+            }
+
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') goToNext();
+                if (e.key === 'ArrowLeft') goToPrev();
+            });
+
+            function startAutoplay() {
+                stopAutoplay();
+                autoplayInterval = setInterval(() => {
+                    goToNext();
+                }, 3500);
+            }
+            function stopAutoplay() {
+                if (autoplayInterval) clearInterval(autoplayInterval);
+            }
+            function resetAutoplay() {
+                stopAutoplay();
+                startAutoplay();
+            }
+
+            setPositionByIndex();
+            startAutoplay();
+
+            wrap.addEventListener('mouseenter', stopAutoplay);
+            wrap.addEventListener('mouseleave', startAutoplay);
+
+            const imgs = track.querySelectorAll('img');
+            let imgsLoaded = 0;
+            imgs.forEach(img => {
+                if (img.complete) {
+                    imgsLoaded++;
+                } else {
+                    img.addEventListener('load', () => {
+                        imgsLoaded++;
+                        if (imgsLoaded === imgs.length) updateWidth();
+                    });
+                }
+            });
+        })();
+    </script>
 
 
 </body>
